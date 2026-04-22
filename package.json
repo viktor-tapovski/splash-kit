@@ -1,6 +1,6 @@
 {
   "name": "splash-kit",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A lightweight library for dynamically generating iOS splash screens for PWA",
   "author": "Viktor Tapovski",
   "license": "MIT",
