@@ -1,0 +1,43 @@
+- name: breaking
+  color: "d73a4a"
+  description: Introduces a breaking change
+
+- name: enhancement
+  color: "a2eeef"
+  description: New feature or improvement
+
+- name: feature
+  color: "0075ca"
+  description: New functionality
+
+- name: bug
+  color: "d73a4a"
+  description: Something isn't working
+
+- name: fix
+  color: "e4e669"
+  description: Bug fix
+
+- name: performance
+  color: "f9d0c4"
+  description: Performance improvement
+
+- name: documentation
+  color: "0075ca"
+  description: Documentation only changes
+
+- name: chore
+  color: "e4e669"
+  description: Build process, tooling, or maintenance
+
+- name: dependencies
+  color: "0366d6"
+  description: Dependency updates
+
+- name: refactor
+  color: "cfd3d7"
+  description: Code refactor without behavior change
+
+- name: skip-changelog
+  color: "ffffff"
+  description: Exclude this PR from release notes

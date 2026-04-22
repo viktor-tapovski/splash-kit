@@ -1,0 +1,74 @@
+{
+  "name": "splash-kit",
+  "version": "0.1.0",
+  "description": "A lightweight library for dynamically generating iOS splash screens for PWA",
+  "author": "Viktor Tapovski",
+  "license": "MIT",
+  "keywords": [
+    "splash screen",
+    "ios",
+    "pwa",
+    "dynamic"
+  ],
+  "main": "dist/splash-kit.js",
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "demo": "vite demo --open"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.5",
+    "eslint": "^10.2.1",
+    "happy-dom": "^20.9.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.9",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.1.5"
+  },
+  "module": "dist/splash-kit.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/splash-kit.mjs",
+      "require": "./dist/splash-kit.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "eslintConfig": {
+    "globals": {
+      "window": true,
+      "console": true
+    },
+    "rules": {
+      "block-scoped-var": 0,
+      "comma-dangle": 0,
+      "no-extra-parens": 1,
+      "no-shadow": 0,
+      "consistent-return": 0,
+      "eqeqeq": 0,
+      "no-new-wrappers": 0,
+      "no-sequences": 1,
+      "radix": 2,
+      "new-parens": 0,
+      "no-underscore-dangle": 0,
+      "no-path-concat": 0,
+      "strict": 0,
+      "camelcase": 0,
+      "no-extend-native": 0,
+      "no-loop-func": 0,
+      "new-cap": 0,
+      "no-unused-expressions": 0,
+      "no-mixed-requires": 0,
+      "quotes": [
+        1,
+        "double",
+        "avoid-escape"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}

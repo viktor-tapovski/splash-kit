@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="SplashKit" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>SplashKit PWA demo</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #0f0f1a;
+        color: #f0f0f0;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        padding: 48px 24px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      header img {
+        width: 36px;
+        height: 36px;
+      }
+
+      header h1 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      header span {
+        font-size: 12px;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin-left: auto;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      main {
+        flex: 1;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .card h2 {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 16px;
+      }
+
+      .config-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 14px;
+        gap: 12px;
+      }
+
+      .config-row:last-child {
+        border-bottom: none;
+      }
+
+      .config-row label {
+        color: rgba(255, 255, 255, 0.6);
+        flex-shrink: 0;
+      }
+
+      .config-row .value {
+        font-family: ui-monospace, monospace;
+        font-size: 13px;
+        color: #a78bfa;
+        text-align: right;
+        word-break: break-all;
+      }
+
+      .toggle {
+        position: relative;
+        width: 36px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+      .toggle-track {
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        cursor: pointer;
+        transition: background 150ms;
+      }
+      .toggle input:checked + .toggle-track {
+        background: #6d28d9;
+      }
+      .toggle-track::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform 150ms;
+      }
+      .toggle input:checked + .toggle-track::after {
+        transform: translateX(16px);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #6d28d9;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: background 120ms;
+      }
+
+      .btn:hover {
+        background: #7c3aed;
+      }
+      .btn:active {
+        background: #5b21b6;
+      }
+
+      .preset-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .preset-btn {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        padding: 12px 8px;
+        background: transparent;
+        color: #f0f0f0;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition:
+          border-color 120ms,
+          background 120ms;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .preset-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .preset-btn.active {
+        border-color: #6d28d9;
+        background: rgba(109, 40, 217, 0.2);
+      }
+
+      .preset-swatch {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+      }
+
+      footer {
+        padding: 24px;
+        text-align: center;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.25);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="/assets/logo.svg" alt="logo" />
+      <h1>splash-kit</h1>
+      <span id="pwa-badge">browser</span>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2>Presets</h2>
+        <div class="preset-grid" id="presets"></div>
+      </div>
+
+      <div class="card">
+        <h2>Current config</h2>
+        <div class="config-row">
+          <label>background</label>
+          <span class="value" id="cfg-bg">—</span>
+        </div>
+        <div class="config-row">
+          <label>images</label>
+          <span class="value" id="cfg-images">—</span>
+        </div>
+        <div class="config-row">
+          <label>duration</label>
+          <span class="value" id="cfg-duration">—</span>
+        </div>
+        <div class="config-row">
+          <label>fade</label>
+          <span class="value" id="cfg-fade">—</span>
+        </div>
+        <div class="config-row">
+          <label>force (show on desktop)</label>
+          <label class="toggle">
+            <input type="checkbox" id="force-toggle" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn" id="replay-btn">▶ Replay splash screen</button>
+    </main>
+
+    <footer>Add to Home Screen on iOS to see native splash behavior</footer>
+
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>
