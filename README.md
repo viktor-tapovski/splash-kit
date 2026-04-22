@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="demo/assets/logo.svg" width="220">
+  <h1 align="center">
+    SplashKit PWA
+  </h1>
+</p>
+
 # splash-kit
 
 A lightweight, zero-dependency library for dynamically generating PWA splash screens on iOS. Renders a canvas overlay at runtime, matched to the exact device viewport and pixel density, and injects an `apple-touch-startup-image` link tag for native iOS splash behavior on subsequent visits.
